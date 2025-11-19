@@ -7,12 +7,17 @@ import android.widget.Toast;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.example.myapplication.BrewListAdapter;
+import com.example.myapplication.Brew;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+        implements BrewListAdapter.OnBrewItemClickListener{
+
 
     private BrewViewModel brewViewModel;
     public static final int NEW_BREW_ACTIVITY_REQUEST_CODE = 1;
@@ -24,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
 
-        final BrewListAdapter adapter = new BrewListAdapter(recyclerView);
+        final BrewListAdapter adapter = new BrewListAdapter(recyclerView, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -61,5 +66,13 @@ public class MainActivity extends AppCompatActivity {
                     "Добавянето е отменено.",
                     Toast.LENGTH_SHORT).show();
         }
+    }
+    @Override
+    public void onDeleteClick(Brew brew) {
+
+        brewViewModel.delete(brew);
+
+        Toast.makeText(this, "Изтрито: " + brew.getName(), Toast.LENGTH_SHORT).show();
+
     }
 }

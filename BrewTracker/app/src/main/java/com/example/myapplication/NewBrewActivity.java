@@ -12,6 +12,7 @@ public class NewBrewActivity extends AppCompatActivity {
     public static final String EXTRA_REPLY_NAME = "com.example.android.brewtracker.NAME";
     public static final String EXTRA_REPLY_NOTES = "com.example.android.brewtracker.NOTES";
     public static final String EXTRA_REPLY_RATING = "com.example.android.brewtracker.RATING";
+    public static final String EXTRA_REPLY_ID = "com.example.android.brewtracker.ID";
 
     private EditText mEditNameView;
     private EditText mEditRatingView;
@@ -25,6 +26,19 @@ public class NewBrewActivity extends AppCompatActivity {
         mEditNameView = findViewById(R.id.edit_brew_name);
         mEditRatingView = findViewById(R.id.edit_brew_rating);
         mEditNotesView = findViewById(R.id.edit_brew_notes);
+
+        final Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            if (extras.containsKey(EXTRA_REPLY_NAME)) {
+                String name = extras.getString(EXTRA_REPLY_NAME);
+                float rating = extras.getFloat(EXTRA_REPLY_RATING);
+                String notes = extras.getString(EXTRA_REPLY_NOTES);
+
+                mEditNameView.setText(name);
+                mEditRatingView.setText(String.valueOf(rating));
+                mEditNotesView.setText(notes);
+            }
+        }
 
         final Button button = findViewById(R.id.button_save);
         button.setOnClickListener(view -> {
@@ -41,6 +55,11 @@ public class NewBrewActivity extends AppCompatActivity {
                     rating = Float.parseFloat(mEditRatingView.getText().toString());
                 } catch (NumberFormatException e) {
                     rating = 0.0f;
+                }
+
+                if (extras != null && extras.containsKey(EXTRA_REPLY_ID)) {
+                    int id = extras.getInt(EXTRA_REPLY_ID, -1);
+                    replyIntent.putExtra(EXTRA_REPLY_ID, id);
                 }
 
                 replyIntent.putExtra(EXTRA_REPLY_NAME, name);

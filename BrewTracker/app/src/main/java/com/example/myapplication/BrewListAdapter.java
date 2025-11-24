@@ -13,6 +13,7 @@ import java.util.List;
 public class BrewListAdapter extends RecyclerView.Adapter<BrewListAdapter.BrewViewHolder> {
     public interface OnBrewItemClickListener {
         void onDeleteClick(Brew brew);
+        void onItemClick(Brew brew);
     }
     private OnBrewItemClickListener listener;
 
@@ -45,6 +46,11 @@ public class BrewListAdapter extends RecyclerView.Adapter<BrewListAdapter.BrewVi
                 }
             });
 
+            holder.itemView.setOnClickListener(v -> {
+                if (listener != null) {
+                    listener.onItemClick(current);
+                }
+            });
         } else {
             holder.textViewName.setText("Няма запис");
         }

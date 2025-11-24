@@ -54,17 +54,21 @@ public class MainActivity extends AppCompatActivity
             String name = data.getStringExtra(NewBrewActivity.EXTRA_REPLY_NAME);
             String notes = data.getStringExtra(NewBrewActivity.EXTRA_REPLY_NOTES);
             float rating = data.getFloatExtra(NewBrewActivity.EXTRA_REPLY_RATING, 0.0f);
+            int id = data.getIntExtra(NewBrewActivity.EXTRA_REPLY_ID, -1);
 
             Brew brew = new Brew(name, notes, rating);
-            brewViewModel.insert(brew);
 
-            Toast.makeText(getApplicationContext(), "Напитката е добавена!", Toast.LENGTH_SHORT).show();
+            if (id != -1) {
+                brew.setId(id);
+                brewViewModel.update(brew);
+                Toast.makeText(getApplicationContext(), "Напитката е редактирана!", Toast.LENGTH_SHORT).show();
+            } else {
+                brewViewModel.insert(brew);
+                Toast.makeText(getApplicationContext(), "Напитката е добавена!", Toast.LENGTH_SHORT).show();
+            }
 
         } else {
-            Toast.makeText(
-                    getApplicationContext(),
-                    "Добавянето е отменено.",
-                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Операцията е отменена.", Toast.LENGTH_SHORT).show();
         }
     }
     @Override
@@ -74,5 +78,17 @@ public class MainActivity extends AppCompatActivity
 
         Toast.makeText(this, "Изтрито: " + brew.getName(), Toast.LENGTH_SHORT).show();
 
+    }
+
+    @Override
+    public void onItemClick(Brew brew) {
+        Intent intent = new Intent(MainActivity.this, NewBrewActivity.class);
+
+        intent.putExtra(NewBrewActivity.EXTRA_REPLY_ID, brew.getId());
+        intent.putExtra(NewBrewActivity.EXTRA_REPLY_NAME, brew.getName());
+        intent.putExtra(NewBrewActivity.EXTRA_REPLY_NOTES, brew.getNotes());
+        intent.putExtra(NewBrewActivity.EXTRA_REPLY_RATING, brew.getRating());
+
+        startActivityForResult(intent, NEW_BREW_ACTIVITY_REQUEST_CODE);
     }
 }

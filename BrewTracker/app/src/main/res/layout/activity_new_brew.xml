@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".NewBrewActivity">
+
+    <EditText
+        android:id="@+id/edit_brew_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Име на напитката (напр. Бира)"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/edit_brew_rating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="Оценка (напр. 4.5)"
+        android:inputType="numberDecimal"
+        android:maxLength="3" />
+
+    <EditText
+        android:id="@+id/edit_brew_notes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="Бележки за вкус/описание"
+        android:inputType="textMultiLine"
+        android:minLines="3"
+        android:gravity="top" />
+
+    <Button
+        android:id="@+id/button_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Записване" />
+
+</LinearLayout>

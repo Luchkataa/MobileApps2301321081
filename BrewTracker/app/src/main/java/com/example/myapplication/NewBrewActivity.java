@@ -70,5 +70,15 @@ public class NewBrewActivity extends AppCompatActivity {
             }
             finish();
         });
+
+        final Button buttonCancel = findViewById(R.id.button_cancel);
+
+        buttonCancel.setOnClickListener(view -> {
+            Intent replyIntent = new Intent();
+
+            setResult(RESULT_CANCELED, replyIntent);
+
+            finish();
+        });
     }
 }

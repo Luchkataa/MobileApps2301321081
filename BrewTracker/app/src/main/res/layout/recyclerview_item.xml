@@ -5,6 +5,17 @@
     android:padding="8dp">
 
     <TextView
+        android:id="@+id/textViewRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@id/button_share"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="8dp"
+        android:textAppearance="@android:style/TextAppearance.Material.Title"
+        android:textColor="@android:color/holo_orange_dark"
+        android:text="4.5" />
+
+    <TextView
         android:id="@+id/textViewName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -12,6 +23,18 @@
         android:layout_toStartOf="@id/textViewRating"
         android:textAppearance="@android:style/TextAppearance.Material.Title"
         android:text="Например: Корона" />
+
+    <ImageButton
+        android:id="@+id/button_share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@id/button_delete"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@android:color/transparent"
+        android:src="@android:drawable/ic_menu_share"
+        android:contentDescription="Споделяне на напитката" />
 
     <ImageButton
         android:id="@+id/button_delete"
@@ -23,17 +46,6 @@
         android:background="@android:color/transparent"
         android:src="@android:drawable/ic_delete"
         android:contentDescription="Изтриване на напитката" />
-
-    <TextView
-        android:id="@+id/textViewRating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toStartOf="@id/button_delete"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="8dp"
-        android:textAppearance="@android:style/TextAppearance.Material.Title"
-        android:textColor="@android:color/holo_orange_dark"
-        android:text="4.5" />
 
     <TextView
         android:id="@+id/textViewNotes"

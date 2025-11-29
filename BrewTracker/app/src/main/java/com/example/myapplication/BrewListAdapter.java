@@ -14,6 +14,7 @@ public class BrewListAdapter extends RecyclerView.Adapter<BrewListAdapter.BrewVi
     public interface OnBrewItemClickListener {
         void onDeleteClick(Brew brew);
         void onItemClick(Brew brew);
+        void onShareClick(Brew brew);
     }
     private OnBrewItemClickListener listener;
 
@@ -51,6 +52,12 @@ public class BrewListAdapter extends RecyclerView.Adapter<BrewListAdapter.BrewVi
                     listener.onItemClick(current);
                 }
             });
+
+            holder.buttonShare.setOnClickListener(v -> {
+                if (listener != null) {
+                    listener.onShareClick(current);
+                }
+            });
         } else {
             holder.textViewName.setText("Няма запис");
         }
@@ -73,6 +80,7 @@ public class BrewListAdapter extends RecyclerView.Adapter<BrewListAdapter.BrewVi
         private final TextView textViewNotes;
         private final TextView textViewRating;
         private final ImageButton buttonDelete;
+        private final ImageButton buttonShare;
 
 
         private BrewViewHolder(View itemView) {
@@ -81,6 +89,7 @@ public class BrewListAdapter extends RecyclerView.Adapter<BrewListAdapter.BrewVi
             textViewNotes = itemView.findViewById(R.id.textViewNotes);
             textViewRating = itemView.findViewById(R.id.textViewRating);
             buttonDelete = itemView.findViewById(R.id.button_delete);
+            buttonShare = itemView.findViewById(R.id.button_share);
         }
     }
 }

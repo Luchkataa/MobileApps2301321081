@@ -91,4 +91,22 @@ public class MainActivity extends AppCompatActivity
 
         startActivityForResult(intent, NEW_BREW_ACTIVITY_REQUEST_CODE);
     }
+
+    @Override
+    public void onShareClick(Brew brew) {
+        String shareText = String.format(
+                "Пробвай тази напитка! %s: Оценка %.1f/5.0. Бележки: %s",
+                brew.getName(),
+                brew.getRating(),
+                brew.getNotes()
+        );
+
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+
+        shareIntent.putExtra(Intent.EXTRA_TEXT, shareText);
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Моята любима напитка!");
+
+        startActivity(Intent.createChooser(shareIntent, "Сподели напитката чрез:"));
+    }
 }

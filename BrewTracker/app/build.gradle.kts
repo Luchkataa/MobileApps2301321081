@@ -48,4 +48,10 @@ dependencies {
     annotationProcessor("androidx.lifecycle:lifecycle-compiler:2.6.2")
     implementation("androidx.activity:activity-ktx:1.8.1")
     implementation("androidx.annotation:annotation:1.7.1")
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("org.mockito:mockito-core:4.11.0")
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
+    androidTestImplementation("androidx.test:runner:1.5.2")
+    androidTestImplementation("androidx.test:rules:1.5.0")
+    androidTestImplementation("androidx.test:core:1.5.0")
 }
